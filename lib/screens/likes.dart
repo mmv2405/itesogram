@@ -24,10 +24,10 @@ class _LikesState extends State<Likes> {
       'Likes',
       style: optionStyle,
     ),
-    //Text(
-    //'Search',
-    //style: optionStyle,
-    //),
+    Text(
+      'Search',
+      style: optionStyle,
+    ),
     Text(
       'Profile',
       style: optionStyle,
