@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itesogram/screens/login.dart';
+import 'package:itesogram/screens/profile.dart';
 import 'package:itesogram/utils/colors.dart';
 
 void main() => runApp(const MyApp());

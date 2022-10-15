@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:itesogram/screens/likes.dart';
+import 'package:itesogram/screens/profile.dart';
 import 'package:itesogram/utils/colors.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -25,10 +26,10 @@ class _PostsState extends State<Posts> {
       'Likes',
       style: optionStyle,
     ),
-    //Text(
-    //'Search',
-    //style: optionStyle,
-    //),
+    Text(
+      'Search',
+      style: optionStyle,
+    ),
     Text(
       'Profile',
       style: optionStyle,
@@ -312,7 +313,12 @@ class _PostsState extends State<Posts> {
               GButton(
                 icon: LineIcons.user,
                 text: 'Profile',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Profile()),
+                  );
+                },
               ),
             ],
             selectedIndex: _selectedIndex,
