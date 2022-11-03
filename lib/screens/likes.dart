@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:itesogram/screens/home.dart';
+import 'package:itesogram/screens/profile.dart';
 import 'package:itesogram/utils/colors.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -292,6 +294,12 @@ class _LikesState extends State<Likes> {
               GButton(
                 icon: LineIcons.home,
                 text: 'Home',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Posts()),
+                  );
+                },
               ),
               GButton(
                 icon: LineIcons.heart,
@@ -306,10 +314,10 @@ class _LikesState extends State<Likes> {
                 icon: LineIcons.user,
                 text: 'Profile',
                 onPressed: () {
-                  //Navigator.push(
-                  // context,
-                  // MaterialPageRoute(builder: (context) => const ()),
-                  //);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Profile()),
+                  );
                 },
               ),
             ],
