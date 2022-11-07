@@ -4,6 +4,7 @@ import 'package:itesogram/screens/home.dart';
 import 'package:itesogram/screens/profile.dart';
 import 'package:itesogram/utils/colors.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:itesogram/screens/pantalla_post.dart';
 
 class Likes extends StatefulWidget {
   const Likes({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _LikesState extends State<Likes> {
       style: optionStyle,
     ),
     Text(
-      'Search',
+      'Post',
       style: optionStyle,
     ),
     Text(
@@ -307,8 +308,14 @@ class _LikesState extends State<Likes> {
                 onPressed: () {},
               ),
               GButton(
-                icon: LineIcons.search,
-                text: 'Search',
+                icon: LineIcons.plusCircle,
+                text: 'Post',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PatallaPost()),
+                  );
+                },
               ),
               GButton(
                 icon: LineIcons.user,

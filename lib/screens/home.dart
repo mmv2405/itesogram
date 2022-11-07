@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:itesogram/screens/camera.dart';
 import 'package:itesogram/screens/inbox.dart';
 import 'package:itesogram/screens/likes.dart';
 import 'package:itesogram/screens/profile.dart';
 import 'package:itesogram/utils/colors.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:itesogram/screens/pantalla_post.dart';
+
+import 'comment.dart';
 
 class Posts extends StatefulWidget {
   const Posts({Key? key}) : super(key: key);
@@ -28,7 +32,7 @@ class _PostsState extends State<Posts> {
       style: optionStyle,
     ),
     Text(
-      'Search',
+      'Post',
       style: optionStyle,
     ),
     Text(
@@ -41,7 +45,15 @@ class _PostsState extends State<Posts> {
     return Scaffold(
       backgroundColor: itesoColor,
       appBar: AppBar(
-        leading: Icon(LineIcons.camera),
+        leading: GestureDetector(
+          child: Icon(LineIcons.camera),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Camera()),
+            );
+          },
+        ),
         backgroundColor: itesoColor,
         elevation: 0,
         actions: [
@@ -97,7 +109,8 @@ class _PostsState extends State<Posts> {
                           ),
                           TextButton(
                             onPressed: () {
-                              // Perform some action
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Comments()));
                             },
                             child: Icon(LineIcons.comment),
                           ),
@@ -316,8 +329,14 @@ class _PostsState extends State<Posts> {
                 },
               ),
               GButton(
-                icon: LineIcons.search,
-                text: 'Search',
+                icon: LineIcons.plusCircle,
+                text: 'Post',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PatallaPost()),
+                  );
+                },
               ),
               GButton(
                 icon: LineIcons.user,

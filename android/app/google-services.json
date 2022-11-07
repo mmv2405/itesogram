@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "235683227319",
+    "project_id": "itesogram-1c288",
+    "storage_bucket": "itesogram-1c288.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235683227319:android:d6251bc4965d71f4aa4f32",
+        "android_client_info": {
+          "package_name": "com.example.itesogram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235683227319-sdti92l1098ngqnbbdqpitlhcim9rs1n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.itesogram",
+            "certificate_hash": "415c409c22b0bba91258e63705c5747214741d54"
+          }
+        },
+        {
+          "client_id": "235683227319-28uhctkivtufkkd7qkmmkihc8lrlr6fh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5VqjgSMPj-YxFraVyNc_go1ju0otY9vc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235683227319-28uhctkivtufkkd7qkmmkihc8lrlr6fh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
