@@ -275,7 +275,7 @@ class _ProfileState extends State<Profile> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PatallaPost()),
+                    MaterialPageRoute(builder: (context) => PantallaPost()),
                   );
                 },
               ),

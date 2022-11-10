@@ -4,7 +4,6 @@ import 'package:itesogram/screens/home.dart';
 import 'package:itesogram/screens/signup.dart';
 import 'package:itesogram/utils/colors.dart';
 import 'package:itesogram/utils/utils.dart';
-import 'package:itesogram/utils/widgets/text_field.dart';
 
 import '../responsive/layout_screen.dart';
 import '../responsive/web_screen.dart';
@@ -20,6 +19,7 @@ class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
+  bool _passwordVisible = false;
 
   @override
   void dispose() {
@@ -27,6 +27,7 @@ class _LoginState extends State<Login> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _passwordVisible = false;
   }
 
   void loginUser() async {
@@ -39,7 +40,7 @@ class _LoginState extends State<Login> {
     );
     if (errorMessage == 'Login success') {
       //showSnackBar(errorMessage, context);
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => ResponsiveLayout(
             webScreenLayout: WebScreen(),
@@ -82,17 +83,46 @@ class _LoginState extends State<Login> {
                   height: 200,
                 ),
                 SizedBox(height: 20),
-                TextFieldInput(
-                  hintText: 'Number, username or email',
-                  textEditingController: _emailController,
-                  textInputType: TextInputType.emailAddress,
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    hintText: 'Enter your email',
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
                 ),
                 SizedBox(height: 20),
-                TextFieldInput(
-                  hintText: 'Password',
-                  textEditingController: _passwordController,
-                  textInputType: TextInputType.visiblePassword,
-                  password: true,
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  controller: _passwordController,
+                  obscureText:
+                      !_passwordVisible, //This will obscure text dynamically
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    hintText: 'Enter your password',
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _passwordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _passwordVisible = !_passwordVisible;
+                        });
+                      },
+                    ),
+                  ),
                 ),
                 SizedBox(height: 10),
                 Row(

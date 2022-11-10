@@ -72,10 +72,8 @@ class AuthMethods {
   }
 
   //Login User
-  Future<String> loginUser({
-    required String email,
-    required String password,
-  }) async {
+  Future<String> loginUser(
+      {required String email, required String password}) async {
     String errorMessage = 'An error occurred';
 
     try {

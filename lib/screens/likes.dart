@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:itesogram/screens/home.dart';
+import 'package:itesogram/screens/pantalla_post.dart';
 import 'package:itesogram/screens/profile.dart';
 import 'package:itesogram/utils/colors.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:itesogram/screens/pantalla_post.dart';
 
 class Likes extends StatefulWidget {
   const Likes({Key? key}) : super(key: key);
@@ -313,7 +313,7 @@ class _LikesState extends State<Likes> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PatallaPost()),
+                    MaterialPageRoute(builder: (context) => PantallaPost()),
                   );
                 },
               ),

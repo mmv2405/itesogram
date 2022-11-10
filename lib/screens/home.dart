@@ -1,14 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:itesogram/screens/camera.dart';
-import 'package:itesogram/screens/inbox.dart';
 import 'package:itesogram/screens/likes.dart';
+import 'package:itesogram/screens/pantalla_post.dart';
 import 'package:itesogram/screens/profile.dart';
 import 'package:itesogram/utils/colors.dart';
+import 'package:itesogram/utils/widgets/posts_ui.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:itesogram/screens/pantalla_post.dart';
-
-import 'comment.dart';
 
 class Posts extends StatefulWidget {
   const Posts({Key? key}) : super(key: key);
@@ -45,245 +43,28 @@ class _PostsState extends State<Posts> {
     return Scaffold(
       backgroundColor: itesoColor,
       appBar: AppBar(
-        leading: GestureDetector(
-          child: Icon(LineIcons.camera),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Camera()),
-            );
-          },
-        ),
+        automaticallyImplyLeading: false,
         backgroundColor: itesoColor,
         elevation: 0,
-        actions: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
-              );
-            },
-            child: Container(
-              padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-              child: Icon(LineIcons.envelope),
-            ),
-          ),
-        ],
         title: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
       ),
-      body: Column(
-        children: [
-          horizontalList,
-          Expanded(
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              padding: const EdgeInsets.all(8),
-              children: <Widget>[
-                Card(
-                  elevation: 2,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: Image.asset('assets/images/icon.png'),
-                        title: const Text('Username'),
-                        subtitle: Text(
-                          'Secondary Text',
-                          style:
-                              TextStyle(color: Colors.black.withOpacity(0.6)),
-                        ),
-                      ),
-                      Image.asset('assets/images/image_post.jpg'),
-                      ButtonBar(
-                        buttonPadding: EdgeInsets.all(1),
-                        alignment: MainAxisAlignment.start,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.heart),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Comments()));
-                            },
-                            child: Icon(LineIcons.comment),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.share),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
-                          style:
-                              TextStyle(color: Colors.black.withOpacity(0.6)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  elevation: 2,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: Image.asset('assets/images/icon.png'),
-                        title: const Text('Username'),
-                        subtitle: Text(
-                          'Secondary Text',
-                          style:
-                              TextStyle(color: Colors.black.withOpacity(0.6)),
-                        ),
-                      ),
-                      Image.asset('assets/images/image_post.jpg'),
-                      ButtonBar(
-                        buttonPadding: EdgeInsets.all(1),
-                        alignment: MainAxisAlignment.start,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.heart),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.comment),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.share),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
-                          style:
-                              TextStyle(color: Colors.black.withOpacity(0.6)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  elevation: 2,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: Image.asset('assets/images/icon.png'),
-                        title: const Text('Username'),
-                        subtitle: Text(
-                          'Secondary Text',
-                          style:
-                              TextStyle(color: Colors.black.withOpacity(0.6)),
-                        ),
-                      ),
-                      Image.asset('assets/images/image_post.jpg'),
-                      ButtonBar(
-                        buttonPadding: EdgeInsets.all(1),
-                        alignment: MainAxisAlignment.start,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.heart),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.comment),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.share),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
-                          style:
-                              TextStyle(color: Colors.black.withOpacity(0.6)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  elevation: 2,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: Image.asset('assets/images/icon.png'),
-                        title: const Text('Username'),
-                        subtitle: Text(
-                          'Secondary Text',
-                          style:
-                              TextStyle(color: Colors.black.withOpacity(0.6)),
-                        ),
-                      ),
-                      Image.asset('assets/images/image_post.jpg'),
-                      ButtonBar(
-                        buttonPadding: EdgeInsets.all(1),
-                        alignment: MainAxisAlignment.start,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.heart),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.comment),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              // Perform some action
-                            },
-                            child: Icon(LineIcons.share),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
-                          style:
-                              TextStyle(color: Colors.black.withOpacity(0.6)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+        builder: (context,
+            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return ListView.builder(
+            itemBuilder: (context, index) => PostUI(
+              snap: snapshot.data!.docs[index].data(),
             ),
-          )
-        ],
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(),
     );
@@ -334,7 +115,7 @@ class _PostsState extends State<Posts> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PatallaPost()),
+                    MaterialPageRoute(builder: (context) => PantallaPost()),
                   );
                 },
               ),
@@ -361,130 +142,3 @@ class _PostsState extends State<Posts> {
     );
   }
 }
-
-Widget horizontalList = Container(
-    margin: EdgeInsets.symmetric(vertical: 20.0),
-    height: 80.0,
-    child: new ListView(
-      scrollDirection: Axis.horizontal,
-      children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.white,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 70.0,
-          margin: EdgeInsets.all(5),
-          child: Icon(LineIcons.plus),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          width: 80.0,
-          margin: EdgeInsets.all(5),
-        ),
-      ],
-    ));
