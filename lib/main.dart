@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:itesogram/provider/user_provider.dart';
 import 'package:itesogram/responsive/layout_screen.dart';
+import 'package:itesogram/responsive/mobile_screen.dart';
 import 'package:itesogram/responsive/web_screen.dart';
 import 'package:itesogram/screens/login.dart';
 import 'package:itesogram/utils/colors.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
               if (snapshot.hasData) {
                 return ResponsiveLayout(
                   webScreenLayout: WebScreen(),
-                  mobileScreenLayout: Login(),
+                  mobileScreenLayout: MobileScreen(),
                 );
               } else if (snapshot.hasError) {
                 return Center(

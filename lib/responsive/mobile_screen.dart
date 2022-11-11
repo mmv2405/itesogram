@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:itesogram/models/user.dart' as model;
 import 'package:itesogram/provider/user_provider.dart';
+import 'package:itesogram/screens/home.dart';
+import 'package:itesogram/screens/inbox.dart';
 import 'package:provider/provider.dart';
 
 class MobileScreen extends StatefulWidget {
@@ -14,8 +16,6 @@ class _MobileScreenState extends State<MobileScreen> {
   @override
   Widget build(BuildContext context) {
     model.User? user = Provider.of<UserProvider>(context).getUser;
-    return Scaffold(
-      body: Center(child: Text(user.username)),
-    );
+    return Posts();
   }
 }
