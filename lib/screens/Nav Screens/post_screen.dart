@@ -1,16 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:itesogram/logic/firestore_methods.dart';
 import 'package:itesogram/models/user.dart';
 import 'package:itesogram/provider/user_provider.dart';
-import 'package:itesogram/screens/home.dart';
-import 'package:itesogram/screens/likes.dart';
-import 'package:itesogram/utils/colors.dart';
-import 'package:itesogram/utils/utils.dart';
-import 'package:line_icons/line_icons.dart';
+import 'package:itesogram/utils/others/colors.dart';
+import 'package:itesogram/utils/others/utils.dart';
 import 'package:provider/provider.dart';
+
+import '../../utils/widgets/bottomNavigationBar.dart';
 
 class PantallaPost extends StatefulWidget {
   const PantallaPost({super.key});
@@ -20,6 +18,7 @@ class PantallaPost extends StatefulWidget {
 }
 
 class _PantallaPostState extends State<PantallaPost> {
+  int selectedIndex = 2;
   bool _isloading = false;
   Uint8List? _file;
   final TextEditingController _descController = TextEditingController();
@@ -112,8 +111,6 @@ class _PantallaPostState extends State<PantallaPost> {
         });
   }
 
-  int _selectedIndex = 2;
-
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -162,7 +159,9 @@ class _PantallaPostState extends State<PantallaPost> {
                 },
               ),
             ),
-            bottomNavigationBar: BottomNavigationBar(),
+            bottomNavigationBar: BottomNavigationBarIteso(
+              selectedIndex: selectedIndex,
+            ),
           )
         : Scaffold(
             appBar: AppBar(
@@ -171,7 +170,7 @@ class _PantallaPostState extends State<PantallaPost> {
                 icon: Icon(Icons.arrow_back),
                 onPressed: clean,
               ),
-              title: _widgetOptions.elementAt(_selectedIndex),
+              title: Text('Sube tu anuncio!'),
               centerTitle: false,
               actions: [
                 TextButton(
@@ -228,74 +227,9 @@ class _PantallaPostState extends State<PantallaPost> {
                 )
               ],
             ),
-            bottomNavigationBar: BottomNavigationBar(),
+            bottomNavigationBar: BottomNavigationBarIteso(
+              selectedIndex: selectedIndex,
+            ),
           );
-  }
-
-  Container BottomNavigationBar() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 20,
-            color: Colors.black.withOpacity(.1),
-          )
-        ],
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
-          child: GNav(
-            rippleColor: Colors.grey[300]!,
-            hoverColor: Colors.grey[100]!,
-            gap: 8,
-            activeColor: Colors.black,
-            iconSize: 24,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            duration: Duration(milliseconds: 400),
-            tabBackgroundColor: Colors.grey[100]!,
-            color: Colors.black,
-            tabs: [
-              GButton(
-                icon: LineIcons.home,
-                text: 'Home',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Posts()),
-                  );
-                },
-              ),
-              GButton(
-                icon: LineIcons.heart,
-                text: 'Likes',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Likes()),
-                  );
-                },
-              ),
-              GButton(
-                icon: LineIcons.plusCircle,
-                text: 'Post',
-              ),
-              GButton(
-                icon: LineIcons.user,
-                text: 'Profile',
-                onPressed: () {},
-              ),
-            ],
-            selectedIndex: _selectedIndex,
-            onTabChange: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-          ),
-        ),
-      ),
-    );
   }
 }

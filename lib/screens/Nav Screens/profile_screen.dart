@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:itesogram/models/user.dart' as model;
-import 'package:itesogram/screens/home.dart';
-import 'package:itesogram/screens/likes.dart';
-import 'package:itesogram/screens/pantalla_post.dart';
-import 'package:itesogram/utils/colors.dart';
+import 'package:itesogram/utils/others/colors.dart';
 import 'package:itesogram/utils/widgets/follow_button.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/user_provider.dart';
+import '../../provider/user_provider.dart';
+import '../../utils/widgets/bottomNavigationBar.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -19,7 +15,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  int _selectedIndex = 3;
+  int selectedIndex = 3;
   List fotos = [
     {
       "name": "Foto1",
@@ -32,45 +28,11 @@ class _ProfileState extends State<Profile> {
     }
   ];
 
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Likes',
-      style: optionStyle,
-    ),
-    Text(
-      'Post',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
     model.User? user = Provider.of<UserProvider>(context).getUser;
     return Scaffold(
         backgroundColor: itesoColor,
-        appBar: AppBar(
-          leading: Icon(LineIcons.camera),
-          backgroundColor: itesoColor,
-          elevation: 0,
-          actions: [
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-              child: Icon(LineIcons.envelope),
-            ),
-          ],
-          title: Center(
-            child: _widgetOptions.elementAt(_selectedIndex),
-          ),
-        ),
         body: ListView(
           children: [
             Padding(
@@ -221,79 +183,8 @@ class _ProfileState extends State<Profile> {
             )
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar());
-  }
-
-  Container BottomNavigationBar() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 20,
-            color: Colors.black.withOpacity(.1),
-          )
-        ],
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
-          child: GNav(
-            rippleColor: Colors.grey[300]!,
-            hoverColor: Colors.grey[100]!,
-            gap: 8,
-            activeColor: Colors.black,
-            iconSize: 24,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            duration: Duration(milliseconds: 400),
-            tabBackgroundColor: Colors.grey[100]!,
-            color: Colors.black,
-            tabs: [
-              GButton(
-                icon: LineIcons.home,
-                text: 'Home',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Posts()),
-                  );
-                },
-              ),
-              GButton(
-                icon: LineIcons.heart,
-                text: 'Likes',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Likes()),
-                  );
-                },
-              ),
-              GButton(
-                icon: LineIcons.plusCircle,
-                text: 'Post',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PantallaPost()),
-                  );
-                },
-              ),
-              GButton(
-                icon: LineIcons.user,
-                text: 'Profile',
-                onPressed: () {},
-              ),
-            ],
-            selectedIndex: _selectedIndex,
-            onTabChange: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-          ),
-        ),
-      ),
-    );
+        bottomNavigationBar: BottomNavigationBarIteso(
+          selectedIndex: selectedIndex,
+        ));
   }
 }

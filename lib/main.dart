@@ -3,11 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:itesogram/provider/user_provider.dart';
-import 'package:itesogram/responsive/layout_screen.dart';
-import 'package:itesogram/responsive/mobile_screen.dart';
-import 'package:itesogram/responsive/web_screen.dart';
-import 'package:itesogram/screens/login.dart';
-import 'package:itesogram/utils/colors.dart';
+import 'package:itesogram/screens/Auth%20Screens/login_screen.dart';
+import 'package:itesogram/screens/mobile_screen.dart';
+import 'package:itesogram/utils/others/colors.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -48,10 +46,7 @@ class MyApp extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
               if (snapshot.hasData) {
-                return ResponsiveLayout(
-                  webScreenLayout: WebScreen(),
-                  mobileScreenLayout: MobileScreen(),
-                );
+                return MobileScreen();
               } else if (snapshot.hasError) {
                 return Center(
                   child: Text('${snapshot.error}'),

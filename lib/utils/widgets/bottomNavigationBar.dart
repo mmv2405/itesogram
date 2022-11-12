@@ -1,23 +1,25 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:itesogram/screens/likes.dart';
-import 'package:itesogram/screens/pantalla_post.dart';
-import 'package:itesogram/screens/profile.dart';
-import 'package:itesogram/utils/colors.dart';
-import 'package:itesogram/utils/widgets/posts_ui.dart';
+import 'package:itesogram/screens/Nav%20Screens/profile_screen.dart';
 import 'package:line_icons/line_icons.dart';
 
-class Posts extends StatefulWidget {
-  const Posts({Key? key}) : super(key: key);
+import '../../screens/Nav Screens/home_screen.dart';
+import '../../screens/Nav Screens/post_screen.dart';
+import '../../screens/Nav Screens/search_screen.dart';
+
+class BottomNavigationBarIteso extends StatefulWidget {
+  //INDEX ON WHERE TO START APP
+  int selectedIndex;
+  BottomNavigationBarIteso({Key? key, required this.selectedIndex})
+      : super(key: key);
 
   @override
-  State<Posts> createState() => _PostsState();
+  State<BottomNavigationBarIteso> createState() =>
+      _BottomNavigationBarItesoState();
 }
 
-class _PostsState extends State<Posts> {
-  int _selectedIndex = 0;
-
+class _BottomNavigationBarItesoState extends State<BottomNavigationBarIteso> {
+//TEXT AREA ON BOTTOM NAVIGATION BAR
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -26,7 +28,7 @@ class _PostsState extends State<Posts> {
       style: optionStyle,
     ),
     Text(
-      'Likes',
+      'Search',
       style: optionStyle,
     ),
     Text(
@@ -38,39 +40,9 @@ class _PostsState extends State<Posts> {
       style: optionStyle,
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: itesoColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: itesoColor,
-        elevation: 0,
-        title: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-      ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
-        builder: (context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return ListView.builder(
-            itemBuilder: (context, index) => PostUI(
-              snap: snapshot.data!.docs[index].data(),
-            ),
-          );
-        },
-      ),
-      bottomNavigationBar: BottomNavigationBar(),
-    );
-  }
-
-  Container BottomNavigationBar() {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -98,14 +70,20 @@ class _PostsState extends State<Posts> {
               GButton(
                 icon: LineIcons.home,
                 text: 'Home',
-              ),
-              GButton(
-                icon: LineIcons.heart,
-                text: 'Likes',
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Likes()),
+                    MaterialPageRoute(builder: (context) => Posts()),
+                  );
+                },
+              ),
+              GButton(
+                icon: LineIcons.search,
+                text: 'Search',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SearchScreen()),
                   );
                 },
               ),
@@ -130,10 +108,10 @@ class _PostsState extends State<Posts> {
                 },
               ),
             ],
-            selectedIndex: _selectedIndex,
+            selectedIndex: widget.selectedIndex,
             onTabChange: (index) {
               setState(() {
-                _selectedIndex = index;
+                widget.selectedIndex = index;
               });
             },
           ),

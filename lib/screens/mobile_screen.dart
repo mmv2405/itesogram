@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:itesogram/models/user.dart' as model;
 import 'package:itesogram/provider/user_provider.dart';
-import 'package:itesogram/screens/home.dart';
-import 'package:itesogram/screens/inbox.dart';
 import 'package:provider/provider.dart';
+
+import 'Nav Screens/home_screen.dart';
+
+//THIS SCREENS JUST LOADS DATA BEFORE POSTS IS SHOWN
 
 class MobileScreen extends StatefulWidget {
   const MobileScreen({Key? key}) : super(key: key);
 
-  @override
   State<MobileScreen> createState() => _MobileScreenState();
 }
 
 class _MobileScreenState extends State<MobileScreen> {
   @override
+  void initState() {
+    addData();
+  }
+
+  addData() async {
+    UserProvider _userProvider =
+        Provider.of<UserProvider>(context, listen: false);
+    await _userProvider.refreshUser();
+  }
+
+  @override
   Widget build(BuildContext context) {
     model.User? user = Provider.of<UserProvider>(context).getUser;
-    return Posts();
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Posts();
+      },
+    );
   }
 }
